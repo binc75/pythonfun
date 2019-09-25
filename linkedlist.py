@@ -55,6 +55,19 @@ class LinkedList:
         # Set the current next for the last element of the list with the new node
         curr.next = Node(data=data)
 
+    def insertAfterKey(self, key, data):
+        '''Insert a new element after a 'key' matching element'''
+        curr = self.head
+        while curr.data != key:
+            if curr.next:
+                curr = curr.next
+            else:
+                return f'{key} not found in list'
+        next_node = curr.next
+        curr.next = Node(data=data, next=next_node)
+        return
+
+
     def find(self, key):
         '''Search for the first element with 'data' matching 'key'. Return the element or 'None' if not found'''
         curr = self.head
@@ -99,17 +112,44 @@ class LinkedList:
 
 
 # Main
+# Instantiate the list
 lst = LinkedList()
-lst.append('first')
-lst.append('afterfirst')
-lst.prepend('beforefirst')
-lst.prepend('todelete')
-print(lst.lenght())
-print(lst)
-print('reverse list')
+
+# Append elements to the list
+for x in 'five', 'seven':
+    print(f'Appending {x} to list')
+    lst.append(x)
+
+# Prepend elements to the list
+for x in 'four', 'two', 'one':
+    print(f'Prepending {x} to list')
+    lst.prepend(x)
+
+# Print list length and list
+print(f'List lenght: {lst.lenght()}')
+print(f'List content:{lst}')
+
+# Remove element from list
+print('Remove element "two" from the list')
+lst.remove('two')
+print(f'List lenght: {lst.lenght()}')
+print(f'List content:{lst}')
+
+# Find element in the list
+print('Looking for element "five" in the list')
+print(lst.find('five'))
+
+
+# Insert new element in after an existing element
+print('Insert element "six" afer element "five"')
+lst.insertAfterKey('five', 'six')
+print(f'List content:{lst}')
+
+# Insert another new element after and existing element
+print('Insert element "ten" afer element "seven"')
+lst.insertAfterKey('seven', 'ten')
+print(f'List content:{lst}')
+
+print('Reverse the list')
 lst.reverse()
-print(lst)
-print(lst.lenght())
-lst.remove('todelete')
-print(lst)
-print(lst.lenght())
+print(f'List content:{lst}')
