@@ -67,6 +67,21 @@ class LinkedList:
         curr.next = Node(data=data, next=next_node)
         return
 
+    def insertBeforeKey(self, key, data):
+        '''Insert a new element before a 'key' matching element'''
+        curr = self.head
+        prev = None
+        # Loop until you find the matching key
+        while curr.data != key:
+            # If the current element has a pointer to a next one increment the cursor
+            if curr.next:
+                prev = curr
+                curr = curr.next
+            else:
+                return f'{key} not found in list'
+        prev.next = Node(data=data, next=curr)
+        return
+
 
     def find(self, key):
         '''Search for the first element with 'data' matching 'key'. Return the element or 'None' if not found'''
@@ -150,6 +165,17 @@ print('Insert element "ten" afer element "seven"')
 lst.insertAfterKey('seven', 'ten')
 print(f'List content:{lst}')
 
+# Insert another new element before and existing one
+print('Insert element "three" before element "four"')
+lst.insertBeforeKey('four', 'three')
+print(f'List content:{lst}')
+
+# Insert another new element before and existing one
+print('Insert element "nine" before element "ten"')
+lst.insertBeforeKey('ten', 'nine')
+print(f'List content:{lst}')
+
+# Reverse list
 print('Reverse the list')
 lst.reverse()
 print(f'List content:{lst}')
