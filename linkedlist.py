@@ -73,15 +73,18 @@ class LinkedList:
         prev = None
         # Loop until you find the matching key
         while curr.data != key:
-            # If the current element has a pointer to a next one increment the cursor
+            # If the current element has a pointer to a next one 
+            # keep track of the curr in prev variable
+            # and then increment curr
             if curr.next:
                 prev = curr
                 curr = curr.next
             else:
                 return f'{key} not found in list'
+        # If you are here that means the current element is the one you are looking for
+        # so that set the prev next to point to the new node with data=data and pointer to the current node
         prev.next = Node(data=data, next=curr)
         return
-
 
     def find(self, key):
         '''Search for the first element with 'data' matching 'key'. Return the element or 'None' if not found'''
